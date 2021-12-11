@@ -8,7 +8,7 @@ class Stack:
 
     def isEmpty(self):
         length = len(self.stack)
-        if length > 0:
+        if length >= 0:
             return False
         else:
             return True
@@ -20,7 +20,7 @@ class Stack:
 
     def pop(self):
         removable_elem = self.stack[len(self.stack)-1]
-        self.stack.remove(removable_elem)
+        self.stack.pop()
         return removable_elem
 
     def peek(self):
@@ -42,9 +42,9 @@ def balance(str):
             if str[i] in open_bracket:
                 check_stack.push(str[i])
             else:
-                bracket = check_stack.pop()
+                bracket = check_stack.peek()
                 if str[i] == close_bracket.get(bracket):
-                    pass
+                    check_stack.pop()
                 elif str[i] != close_bracket.get(bracket):
                     logic = False
         if logic:
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     var_list_1 = '[([])((([[[]]])))]{()}'
     var_list_2 = '[[{())}]'
 
-    balance(var_list_2)
+    balance(var_list_1)
 
 
 
